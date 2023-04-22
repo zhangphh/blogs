@@ -1,0 +1,130 @@
+syntax = "v1"
+
+info (
+	title:
+	desc:
+	author: "zhangphh"
+	email: "zhangphh@qq.com"
+)
+
+type LoginRequest {
+	Username string `form:"username"`
+	Password string `form:"password"`
+}
+
+type LoginResponse {
+	Id            int64  `json:"id"`
+	Avatar        string `json:"avatar"`
+	Email         string `json:"email"`
+	Intro         string `json:"intro"`
+	IpAddress     string `json:"ipAddress"`
+	IpSource      string `json:"ipSource"`
+	IsSubscribe   int8   `json:"isSubscribe"`
+	LastLoginTime string `json:"lastLoginTime"`
+	LoginType     int8   `json:"loginType"`
+	Nickname      string `json:"nickname"`
+	Token         string `json:"token"`
+	Username      string `json:"username"`
+	Website       string `json:"website"`
+}
+
+type (
+	GetMenusResponse {
+		Name      string             `json:"name"`
+		Path      string             `json:"path"`
+		Component string             `json:"component"`
+		Icon      string             `json:"icon"`
+		Hidden    bool               `json:"hidden"`
+		OrderNum  int32              `json:"orderNum"`
+		Children  []GetMenusResponse `json:"children"`
+	}
+)
+
+type (
+	GetAreaDataRequest {
+		Type int64 `form:"type"`
+	}
+
+	GetAreaDataResponse {
+		Name  string `json:"name"`
+		Value int64  `json:"value"`
+	}
+)
+
+type (
+	GetSysInfoResponse {
+		ViewsCount   int64         `json:"viewsCount"`
+		MessageCount int64         `json:"messageCount"`
+		UserCount    int64         `json:"userCount"`
+		ArticleCount int64         `json:"articleCount"`
+		Categories   []Category    `json:"categories"`
+		Tags         []Tag         `json:"tags"`
+		ArticleStats []ArticleStat `json:"articleStats"`
+		UniqueViews  []UniqueView  `json:"uniqueViews"`
+		ArticleRanks []ArticleRank `json:"articleRanks"`
+	}
+
+	Category {
+		Id           int64  `json:"id"`
+		CategoryName string `json:"categoryName"`
+		ArticleCount int64  `json:"articleCount"`
+	}
+	Tag {
+		Id      int64  `json:"id"`
+		TagName string `json:"tagName"`
+	}
+	ArticleStat {
+		Date  string `json:"date"`
+		Count int64  `json:"count"`
+	}
+	UniqueView {
+		Day        string `json:"day"`
+		ViewsCount int64  `json:"viewsCount"`
+	}
+
+	ArticleRank {
+		ArticleTitle string `json:"articleTitle"`
+		ViewsCount   int64  `json:"viewsCount"`
+	}
+
+	SearchCategoryResponse {
+		Id           int64  `json:"id"`
+		CategoryName string `json:"categoryName"`
+	}
+
+	SearchTagResponse {
+		Id      int64  `json:"id"`
+		TagName string `json:"tagName"`
+	}
+)
+
+@server(
+	prefix: admin
+	middleware: AuthToken
+)
+
+service admin-api {
+	@handler Login
+	post /users/login(LoginRequest) returns (LoginResponse)
+	
+	@handler UserMenus
+	get /user/menus returns (GetMenusResponse)
+	
+	@handler Report
+	post /report
+	
+	@handler AreaData
+	get /users/area (GetAreaDataRequest) returns (GetAreaDataResponse)
+	
+	@handler SysInfo
+	get / returns(GetSysInfoResponse)
+	
+	@handler SearchCategory
+	get /categories/search returns (SearchCategoryResponse)
+	
+	@handler SearchTag
+	get /tags/search returns (SearchTagResponse)
+	
+	@handler UploadImage
+	post /articles/images
+}
