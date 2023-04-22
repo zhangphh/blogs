@@ -3,7 +3,7 @@ package constants
 import "time"
 
 const (
-	DefaultWebsiteConfigKey = "blog.website.config.2"
+	DefaultWebsiteConfigKey = "blog.website.config.1"
 	BlogsViewCountKey       = "blog.view.count"
 
 	UniqueVisitorKey = "blog.unique.visitors"

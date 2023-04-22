@@ -9,6 +9,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"github.com/spf13/viper"
+	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 	"gopkg.in/yaml.v2"
 	"io"
@@ -98,6 +99,7 @@ func MustLoad(nacosConfigFilePath, localConfigPath string, v interface{}) *Nacos
 		log.Fatalf("get config error: %+v", err)
 	}
 
+	err = conf.LoadFromYamlBytes(config, v)
 	err = yaml.Unmarshal(config, v)
 	if err != nil {
 		log.Fatalf("load from yml bytes error: %+v", err)

@@ -3,18 +3,18 @@ dev:
   Host: 0.0.0.0
   Port: 8888
 
-  Mysql:
-    Host: 127.0.0.1 
-    Port: 3306
-    Username: root
-    Password: zhangphh=520
-    DatabaseName: zhangphh_blogs
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    username: root
+    password: zhangphh=520
+    database_name: zhangphh_blogs
   
-  Redis:
-    Host: 127.0.0.1
-    Port: 6379
-    Password: ""
-    DB: 1
-    PoolSize: 50
-    MinIdleConns: 10
-    MaxRetries: 3
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    db: 1
+    pool_size: 50
+    min_idle_conns: 10
+    max_retries: 3

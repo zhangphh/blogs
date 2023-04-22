@@ -14,8 +14,8 @@ type Article struct {
 	Type           int8   `gorm:"type"`            // 文章类型 1原创 2转载 3翻译
 	Password       string `gorm:"password"`        // 访问密码
 	OriginalUrl    int32  `gorm:"original_url"`    // 原文链接
-	CreateTime     uint32 `gorm:"create_time"`     // 发表时间
-	UpdateTime     uint32 `gorm:"update_time"`     // 更新时间
+	Ctime          uint32 `gorm:"ctime"`           // 发表时间
+	Mtime          uint32 `gorm:"mtime"`           // 更新时间
 }
 
 func (Article) TableName() string {

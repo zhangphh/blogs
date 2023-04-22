@@ -45,8 +45,8 @@ func (dao *ArticleDaoImpl) GetAllArticles(current, size int) []db.ArticleWithCat
 		"article.is_featured, "+
 		"article.is_delete, "+
 		"article.status, "+
-		"article.create_time, "+
-		"article.update_time,"+
+		"article.ctime, "+
+		"article.mtime,"+
 		"category.category_name").
 		Where("user_id = ? and is_delete = ? and status in (1, 2)", 1, 0).Order("id desc").Limit(size).Offset(current).
 		Joins("left join category_tab category on article.category_id = category.id").Find(&records).Error

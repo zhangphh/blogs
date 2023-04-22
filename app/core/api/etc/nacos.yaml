@@ -1,9 +1,9 @@
 dev:
-  Servers:
-    - Addr: 127.0.0.1
-      Port: 8848
-  Group: api-dev
-  DataID: core-api
-  NamespaceID: d7532de5-68a7-4e3d-abf1-a4344761a064
+  servers:
+    - addr: 127.0.0.1
+      port: 8848
+  group: api-dev
+  data_id: core-api
+  namespace_id: 51fca0bb-6a82-4c29-ae1f-705850249544
   
-  RPCGroup: rpc-dev
+  rpc_group: rpc-dev

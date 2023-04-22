@@ -80,8 +80,8 @@ func (l *GetAllArticlesLogic) GetAllArticles(req *types.GetAllArticlesRequest) (
 			IsFeatured:   article.IsFeatured,
 			CategoryName: article.CategoryName,
 			Status:       article.Status,
-			CreateTime:   utils.TimeFormat(article.CreateTime),
-			UpdateTime:   utils.TimeFormat(article.UpdateTime),
+			CreateTime:   utils.TimeFormat(article.Ctime),
+			UpdateTime:   utils.TimeFormat(article.Mtime),
 			Tags:         articleTags,
 			Author: types.Author{
 				Id:          userInfo.Id,
